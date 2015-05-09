@@ -80,33 +80,50 @@ them for your projects.
 Next Steps
 ==========
 
-Change into your newly created project directory and execute the
-following commands to get started.
+Change into your newly created project directory and execute the following
+commands to get started.
 
-Install the packages for development::
+Install the task execution tool `invoke <http://www.pyinvoke.org/>`_:
 
-    $ make develop
+::
 
-Then create the new PostgreSQL user and database::
+    $ pip install invoke
 
-    $ make create-db
+Install the packages for development:
 
-The next step is to create the Django app(s) you want for the project::
+::
 
-    $ mkdir -p <projectname>/<appname>
-    $ django-admin startapp <appname> <projectname>/<appname>
+    $ invoke develop
 
-Now create the database tables::
+Then create the new PostgreSQL user and database:
 
-    $ make migrate
+::
 
-And start the development webserver::
+    $ invoke db.create
 
-    $ make runserver
+The next step is to create the Django app(s) you want for the project:
 
-To see the other targets available in the ``Makefile`` simply run::
+::
 
-    $ make
+    $ invoke django.startapp <appname>
+
+Now create the database tables:
+
+::
+
+    $ invoke django.manage migrate
+
+And start the development webserver:
+
+::
+
+    $ invoke django.runserver
+
+To list the other ``invoke`` tasks available simply run:
+
+::
+
+    $ invoke -l
 
 License
 =======

@@ -12,7 +12,7 @@ use for Django projects at `transcode <http://www.transcode.de/>`_.
 Batteries included
 ==================
 
-* `Django 1.7 <https://djangoproject.com>`_
+* `Django 1.8 <https://djangoproject.com>`_
 * `Initializr 4.0 <http://www.initializr.com/>`_ HTML5 template
 
     * `Bootstrap 3.1.1 <http://getbootstrap.com/>`_
@@ -57,6 +57,7 @@ Testing
 * `isort <https://github.com/timothycrosley/isort>`_
 * `pytest <http://pytest.org/>`_
 * `pytest-django <http://pytest-django.readthedocs.org/>`_
+* `pytest-factoryboy <http://pytest-factoryboy.readthedocs.org/en/latest/>`_
 * `pytest-pythonpath <https://github.com/bigsassy/pytest-pythonpath>`_
 * `tox <http://tox.testrun.org/>`_
 

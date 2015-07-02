@@ -29,9 +29,8 @@ def clean(ctx):
 def develop(ctx):
     """Install (or update) all packages required for development"""
     ctx.run('pip install -U pip setuptools wheel')
-    ctx.run('pip install -U -r requirements.txt')
-    ctx.run('pip install -U -e .[docs]')
-    ctx.run('pip install -U -e .[tests]')
+    ctx.run('pip install -U -e .')
+    ctx.run('pip install -U -r requirements/dev.txt')
 
 
 ns = Collection(clean_python, clean, develop, build, db, django, docs, test)

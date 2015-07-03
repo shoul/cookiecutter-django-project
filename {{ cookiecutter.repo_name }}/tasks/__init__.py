@@ -16,9 +16,9 @@ def clean_python(ctx):
     ctx.run('find . -name \'__pycache__\' -exec rm -fr {} +')
 
 
-# TODO Using call() does not yet work with Python 3. It triggers a
-# "RuntimeError: maximum recursion depth exceeded while calling a Python
-# object" exception
+# TODO Using call() does not yet work with Python 3.
+# It triggers a "RuntimeError: maximum recursion depth exceeded while calling a
+# Python object" exception. See https://github.com/pyinvoke/invoke/issues/257
 @task(pre=[build.clean, call(docs.clean, builddir='_build'), clean_python, test.clean])
 def clean(ctx):
     """Remove all build, test, coverage and Python artifacts"""

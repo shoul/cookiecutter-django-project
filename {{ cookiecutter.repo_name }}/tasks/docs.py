@@ -7,7 +7,7 @@ from invoke import Collection
 
 @task(help={'builddir': "Sphinx build directory"})
 def clean(ctx, builddir=None):
-    """Remove documentation artifacts"""
+    """Remove documentation artifacts."""
     command = 'make -C {path} clean BUILDDIR={builddir}'.format(
         builddir=builddir or ctx.sphinx.build_dir,
         path=os.path.join(ctx.base_dir, 'docs')
@@ -17,7 +17,7 @@ def clean(ctx, builddir=None):
 
 @task(help={'builddir': "Sphinx build directory", 'sphinxopts': "Sphinx options"})
 def html(ctx, builddir=None, sphinxopts=None):
-    """Build the project documentation as HTML"""
+    """Build the project documentation as HTML."""
     command = 'make -C {path} html BUILDDIR={builddir} SPHINXOPTS=\'{sphinxopts}\''.format(
         builddir=builddir or ctx.sphinx.build_dir,
         path=os.path.join(ctx.base_dir, 'docs'),
@@ -28,7 +28,7 @@ def html(ctx, builddir=None, sphinxopts=None):
 
 @task(help={'builddir': "Sphinx build directory"}, name='open')
 def open_docs(ctx, builddir=None):
-    """Open the project documentation in the default browser"""
+    """Open the project documentation in the default browser."""
     uri = 'file://{path}/docs/{builddir}/html/index.html'.format(
         path=os.getcwd(),
         builddir=builddir or ctx.sphinx.build_dir
@@ -38,7 +38,7 @@ def open_docs(ctx, builddir=None):
 
 @task(help={'builddir': "Sphinx build directory", 'port': "Port to use"})
 def serve(ctx, builddir=None, port=None):
-    """Serve the project documentation in the default browser"""
+    """Serve the project documentation in the default browser."""
     webbrowser.open('http://127.0.0.1:{0}'.format(port or ctx.sphinx.port))
     command = 'cd docs/{builddir}/html; python -m SimpleHTTPServer {port}'.format(
         builddir=builddir or ctx.sphinx.build_dir,

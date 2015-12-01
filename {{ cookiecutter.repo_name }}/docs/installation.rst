@@ -207,6 +207,12 @@ Now create the database tables:
 
     $ invoke django.manage migrate
 
+And create a new Django superuser:
+
+::
+
+    $ invoke django.manage createsuperuser
+
 And start the development webserver:
 
 ::

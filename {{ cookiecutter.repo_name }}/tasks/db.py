@@ -9,8 +9,8 @@ def create(ctx, env=None):
     """Create a new PostgreSQL database."""
     command = ''.join((
         'createdb -U {username} -l en_US.utf-8 -E utf-8 -O {username}',
-         ' -T template0 -e {database}'
-         ))
+        ' -T template0 -e {database}'
+    ))
     command = command.format(
         database=ctx.db.database,
         username=ctx.db.username

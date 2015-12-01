@@ -6,10 +6,10 @@ from invoke import Collection
 
 @task(help={'command': "Django command to execute", 'env': "envdir name to use"})
 def manage(ctx, command, env=None):
-    """Execute a Django command using the given env"""
-    command = 'envdir {envdir} {manage_py} {command}'.format(
+    """Execute a Django command using the given env."""
+    command = 'envdir {envdir} python {manage_py} {command}'.format(
         envdir=os.path.join(ctx.base_dir, 'envs', env or ctx.env),
-        manage_py=os.path.join(ctx.base_dir, ctx.pkg_name, 'manage.py'),
+        manage_py=os.path.join(ctx.base_dir, 'manage.py'),
         command=command
     )
     ctx.run(command)

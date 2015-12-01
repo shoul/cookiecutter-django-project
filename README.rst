@@ -174,7 +174,10 @@ Then create the new PostgreSQL user and database:
 
 ::
 
+    $ invoke db.create-user
+
     $ invoke db.create
+
 
 The next step is to create the Django app(s) you want for the project:
 

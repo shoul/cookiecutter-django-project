@@ -192,6 +192,8 @@ Install the packages for development:
 
 Then create the new PostgreSQL user and database:
 
+    $ invoke db.create-user
+
     $ invoke db.create
 
 

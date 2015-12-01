@@ -1,5 +1,6 @@
 from invoke import ctask as task
 from invoke import Collection
+from invoke.runners import Local
 
 from . import helpers
 
@@ -33,14 +34,14 @@ def drop(ctx, env=None, force=False):
         database=ctx.db.database,
         username=ctx.db.username
     )
-    ctx.run(helpers.envdir(ctx, command, env or ctx.env))
+    ctx.run(helpers.envdir(ctx, command, env or ctx.env), pty=False)
 
 
 @task(name='drop-user')
 def drop_user(ctx, env=None, force=False):
     """Drop database user."""
     command = 'dropuser -i -e {username}'.format(username=ctx.db.username)
-    ctx.run(helpers.envdir(ctx, command, env or ctx.env))
+    ctx.run(helpers.envdir(ctx, command, env or ctx.env), pty=False)
 
 
 ns = Collection(create, create_user, drop, drop_user)

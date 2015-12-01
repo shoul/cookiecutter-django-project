@@ -26,7 +26,7 @@ def clean(ctx):
 
 
 @task(name='clean-backups')
-def clean_backups(ctx):
+def clean_backups(ctx, force=False):
     """Remove backup files."""
     ctx.run('find . -name \'*~\' -delete')
     ctx.run('find . -name \'*.orig\' -delete')
@@ -48,7 +48,7 @@ def isort(ctx):
     ctx.run(command)
 
 
-ns = Collection(clean_python, clean, develop, build, db, django, docs, isort, pypi, test)
+ns = Collection(clean_python, clean, clean_backups, develop, build, db, django, docs, isort, pypi, test)
 ns.configure({
     'base_dir': os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
     'env': 'dev',

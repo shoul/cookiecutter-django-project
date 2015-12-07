@@ -29,8 +29,10 @@ def create_user(ctx, env=None):
 @task
 def drop(ctx, env=None, force=False):
     """Drop database."""
-    command = 'dropdb -i -e -U {username} {database}'.format(
+    interactive = '' if force else '-i'
+    command = 'dropdb {interactive} -e -U {username} {database}'.format(
         database=ctx.db.database,
+        interactive=interactive,
         username=ctx.db.username
     )
     ctx.run(helpers.envdir(ctx, command, env or ctx.env), pty=False)
@@ -39,7 +41,11 @@ def drop(ctx, env=None, force=False):
 @task(name='drop-user')
 def drop_user(ctx, env=None, force=False):
     """Drop database user."""
-    command = 'dropuser -i -e {username}'.format(username=ctx.db.username)
+    interactive = '' if force else '-i'
+    command = 'dropuser {interactive} -e {username}'.format(
+        interactive=interactive,
+        username=ctx.db.username
+    )
     ctx.run(helpers.envdir(ctx, command, env or ctx.env), pty=False)
 
 

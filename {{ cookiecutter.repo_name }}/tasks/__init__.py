@@ -3,7 +3,7 @@ import os
 from invoke import ctask as task
 from invoke import Collection
 
-from . import build, db, django, docs, pypi, test
+from . import build, db, django, docs, helpers, pypi, test
 
 
 @task(name='clean-python')
@@ -28,9 +28,12 @@ def clean(ctx):
 @task(name='clean-backups')
 def clean_backups(ctx, force=False):
     """Remove backup files."""
-    ctx.run('find . -name \'*~\' -delete')
-    ctx.run('find . -name \'*.orig\' -delete')
-    ctx.run('find . -name \'*.swp\' -delete')
+    if not force:
+        answer = helpers.confirmation_prompt("Do you want to remove all backup files?")
+    if force or answer:
+        ctx.run('find . -name \'*~\' -delete')
+        ctx.run('find . -name \'*.orig\' -delete')
+        ctx.run('find . -name \'*.swp\' -delete')
 
 
 @task

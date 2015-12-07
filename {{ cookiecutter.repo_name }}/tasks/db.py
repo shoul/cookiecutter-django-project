@@ -1,6 +1,5 @@
 from invoke import ctask as task
 from invoke import Collection
-from invoke.runners import Local
 
 from . import helpers
 

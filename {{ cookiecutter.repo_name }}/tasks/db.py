@@ -29,24 +29,32 @@ def create_user(ctx, env=None):
 @task
 def drop(ctx, env=None, force=False):
     """Drop database."""
-    interactive = '' if force else '-i'
-    command = 'dropdb {interactive} -e -U {username} {database}'.format(
+    command = 'dropdb -e -U {username} {database}'.format(
         database=ctx.db.database,
-        interactive=interactive,
         username=ctx.db.username
     )
-    ctx.run(helpers.envdir(ctx, command, env or ctx.env), pty=False)
+    msg = "Database \"{database}\" will be permanently removed.\nAre you sure?".format(
+        database=ctx.db.database
+    )
+    if not force:
+        answer = helpers.confirmation_prompt(msg)
+    if force or answer:
+        ctx.run(helpers.envdir(ctx, command, env or ctx.env))
 
 
 @task(name='drop-user')
 def drop_user(ctx, env=None, force=False):
     """Drop database user."""
-    interactive = '' if force else '-i'
-    command = 'dropuser {interactive} -e {username}'.format(
-        interactive=interactive,
+    command = 'dropuser -e {username}'.format(
         username=ctx.db.username
     )
-    ctx.run(helpers.envdir(ctx, command, env or ctx.env), pty=False)
+    msg = "Role \"{username}\" will be permanently removed.\nAre you sure?".format(
+        username=ctx.db.username
+    )
+    if not force:
+        answer = helpers.confirmation_prompt(msg)
+    if force or answer:
+        ctx.run(helpers.envdir(ctx, command, env or ctx.env))
 
 
 ns = Collection(create, create_user, drop, drop_user)

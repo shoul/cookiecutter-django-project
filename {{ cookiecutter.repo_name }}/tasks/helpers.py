@@ -13,7 +13,7 @@ def envdir(ctx, command, env=None):
 
 def confirmation_prompt(question):
     """Helper to ask user for confirmation."""
-    sys.stdout.write("{} [y/n]\n".format(question))
+    sys.stdout.write("{} (y/n)\n".format(question))
     while True:
         try:
             return strtobool(input().lower())

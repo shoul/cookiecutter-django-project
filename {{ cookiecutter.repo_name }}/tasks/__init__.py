@@ -2,6 +2,7 @@ import os
 
 from invoke import ctask as task
 from invoke import Collection
+from invoke.tasks import call
 
 from . import build, db, django, docs, helpers, pypi, test
 
@@ -15,14 +16,10 @@ def clean_python(ctx):
     ctx.run('find . -name \'__pycache__\' -delete')
 
 
-# TODO Using call() in pre() does not yet work with Python 3.
-# It triggers a "RuntimeError: maximum recursion depth exceeded while calling a
-# Python object" exception. See https://github.com/pyinvoke/invoke/issues/257
-@task(pre=[build.clean, clean_python, test.clean])
+@task(pre=[build.clean, call(docs.clean, builddir='_build'), clean_python, test.clean])
 def clean(ctx):
     """Remove all build, test, coverage and Python artifacts."""
-    builddir = docs.ns.configuration().get('sphinx').get('build_dir')
-    docs.clean(ctx, builddir=builddir)
+    pass
 
 
 @task(name='clean-backups')

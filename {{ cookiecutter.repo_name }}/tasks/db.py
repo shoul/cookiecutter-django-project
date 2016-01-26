@@ -11,10 +11,7 @@ def create(ctx, env=None):
         'createdb -U {username} -l en_US.utf-8 -E utf-8 -O {username}',
         ' -T template0 -e {database}'
     ))
-    command = command.format(
-        database=ctx.db.database,
-        username=ctx.db.username
-    )
+    command = command.format(database=ctx.db.database, username=ctx.db.username)
     ctx.run(helpers.envdir(ctx, command, env or ctx.env))
 
 
@@ -45,9 +42,7 @@ def drop(ctx, env=None, force=False):
 @task(name='drop-user')
 def drop_user(ctx, env=None, force=False):
     """Drop database user."""
-    command = 'dropuser -e {username}'.format(
-        username=ctx.db.username
-    )
+    command = 'dropuser -e {username}'.format(username=ctx.db.username)
     msg = "Role \"{username}\" will be permanently removed.\nAre you sure?".format(
         username=ctx.db.username
     )

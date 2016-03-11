@@ -2,13 +2,13 @@
     "project_name": "My Project",
     "repo_name": "{{ cookiecutter.project_name|lower|replace(' ', '-') }}",
     "pkg_name": "{{ cookiecutter.repo_name|replace('-', '') }}",
-    "author_name": "transcode",
-    "github_account": "transcode-de",
-    "email": "noreply@example.com",
-    "error_email": "errors@example.com",
+    "author_name": "shoul.de",
+    "github_account": "shoul",
+    "email": "info@shoul.de",
+    "error_email": "info@shoul.de",
     "domain": "www.example.com",
     "description": "A short description of the project.",
-    "year": "2015",
+    "year": "2016",
     "version": "0.1.0",
     "license": "BSD"
 }

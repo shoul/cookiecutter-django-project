@@ -141,7 +141,7 @@ project in. Then set up the project using this cookiecutter template like so:
 
 ::
 
-    $ cookiecutter gh:transcode-de/cookiecutter-django-project
+    $ cookiecutter gh:shoul/cookiecutter-django-project
 
 You have to answer a few questions to configure the project. The defaults are
 good for transcode projects - surely you want to override them for yours.
